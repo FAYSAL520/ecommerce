@@ -1,0 +1,189 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+{% load cart_tag %}
+
+
+<!-- checkout area start -->
+<form method="post" action="{% url 'place_order' %}">
+    {% csrf_token %}
+        <div class="checkout-area pt-100px pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="billing-info-wrap">
+                            <h3>Billing Details</h3>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>First Name</label>
+                                        <input type="text" value="{{user.first_name}}" name="firstname" readonly />
+                                        <input type="text" value="{{order_id}}" name="order_id" hidden />
+                                        <input type="text" value="{{payment}}" name="payment" hidden />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Last Name</label>
+                                        <input type="text" value="{{user.last_name}}" name="lastname" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-select mb-4">
+                                        <label>Country</label>
+                                        <select name="country">
+                                            <option>Select a country</option>
+                                            <option>Bangladesh</option>
+                                            <option>US</option>
+                                            <option>UK</option>
+                                            <option>India</option>
+                                            <option>Barbados</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-4">
+                                        <label>Street Address</label>
+
+                                        <input placeholder="House number and street name / Apartment, suite, unit etc." type="text" name="address" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-4">
+                                        <label>Town / City</label>
+                                        <input type="text" name="city" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>State</label>
+                                        <input type="text" name="state" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Postcode / ZIP</label>
+                                        <input type="text" name="postcode" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Phone</label>
+                                        <input type="text" name="phone" required />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Email Address</label>
+                                        <input type="text" value="{{user.email}}" name="email" readonly />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="additional-info-wrap">
+                                <h4>Additional information</h4>
+                                <div class="additional-info">
+                                    <label>Order notes</label>
+                                    <textarea placeholder="Notes about your order, e.g. special notes for delivery. " name="additional_info"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 mt-md-30px mt-lm-30px ">
+                        <div class="your-order-area">
+                            <h3>Your order</h3>
+                            <div class="your-order-wrap gray-bg-4">
+                                <div class="your-order-product-info">
+                                    <div class="your-order-top">
+                                        <ul>
+                                            <li>Product</li>
+                                            <li>Total</li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-middle">
+                                        <ul>
+                                            {% for key,value in request.session.cart.items %}
+                                            <li><span class="order-middle-left">{{value.name | truncatewords:4}} X {{value.quantity}}</span> <span
+                                                class="order-price">৳{{value.price|multiply:value.quantity}} </span></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-bottom">
+                                        <ul>
+                                            <li class="your-order-shipping">Shipping</li>
+                                            <li>৳50</li>
+                                        </ul>
+                                        <ul>
+                                            <li class="your-order-shipping">Tex</li>
+                                            <li>৳15</li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-total">
+                                        <ul>
+                                            <li class="order-total">Total</li>
+                                            <li>৳<input value="{{cart_total_amount}}" name="amount" readonly style="border: none;
+                                                padding: 0px;
+                                                inline-size: auto;
+                                                text-align: end;
+                                                margin-left: -141px;"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="payment-method">
+                                    <div class="payment-accordion element-mrg">
+                                        <div id="faq" class="panel-group">
+                                            <div class="panel panel-default single-my-account m-0">
+                                                <div class="panel-heading my-account-title">
+                                                    <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-1" class="collapsed" aria-expanded="true">Direct bank transfer</a>
+                                                    </h4>
+                                                </div>
+                                                <div id="my-account-1" class="panel-collapse collapse show" data-bs-parent="#faq">
+                                                    <div class="panel-body">
+                                                        <p>Please send a check to Store Name, Store Street, Store Town,
+                                                            Store State / County, Store Postcode.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default single-my-account m-0">
+                                                <div class="panel-heading my-account-title">
+                                                    <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-2" aria-expanded="false" class="collapsed">Check payments</a></h4>
+                                                </div>
+                                                <div id="my-account-2" class="panel-collapse collapse" data-bs-parent="#faq">
+                                                    <div class="panel-body">
+                                                        <p>Please send a check to Store Name, Store Street, Store Town,
+                                                            Store State / County, Store Postcode.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default single-my-account m-0">
+                                                <div class="panel-heading my-account-title">
+                                                    <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-3">Cash on delivery</a></h4>
+                                                </div>
+                                                <div id="my-account-3" class="panel-collapse collapse" data-bs-parent="#faq">
+                                                    <div class="panel-body">
+                                                        <p>Please send a check to Store Name, Store Street, Store Town,
+                                                            Store State / County, Store Postcode.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Place-order mt-25">
+                                <a class="btn-hover" href="#"><button type="submit" class="text-light">Continue</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+        <!-- checkout area end -->
+
+
+
+{% endblock %}

@@ -1,0 +1,455 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- Hero/Intro Slider Start -->
+        <div class="section ">
+            <div class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1">
+                <!-- Hero slider Active -->
+                <div class="swiper-wrapper">
+                    <!-- Single slider item -->
+                    <div class="hero-slide-item slider-height-2 swiper-slide bg-color1" data-bg-image="{% static 'assets/images/hero/bg/hero-bg-2-1.webp' %}">
+                        <div class="container h-100">
+                            <div class="row h-100 flex-row-reverse">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 align-self-center sm-center-view">
+                                    <div class="hero-slide-content hero-slide-content-2 slider-animated-1">
+                                        <h2 class="title-1">Easy Your Life <br>
+                                        For Smart Device </h2>
+                                        <span class="price">
+                                            <span class="mini-title">Only</span>
+                                        <span class="amount">$24.00</span>
+                                        </span>
+                                        <a href="shop-left-sidebar.html" class="btn btn-primary text-capitalize">Shop All Devices</a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center position-relative align-items-center">
+                                    <div class="show-case">
+                                        <div class="hero-slide-image slider-2">
+                                            <img src="{% static 'assets/images/hero/inner-img/hero-2-1.png' %}" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single slider item -->
+                    <div class="hero-slide-item slider-height-2 swiper-slide bg-color1" data-bg-image="{% static 'assets/images/hero/bg/hero-bg-2-1.webp' %}">
+                        <div class="container h-100">
+                            <div class="row h-100 flex-row-reverse">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 align-self-center sm-center-view">
+                                    <div class="hero-slide-content hero-slide-content-2 slider-animated-1">
+                                        <h2 class="title-1">Easy Your Life <br>
+                                        For Smart Device </h2>
+                                        <span class="price">
+                                            <span class="mini-title">Only</span>
+                                        <span class="amount">$24.00</span>
+                                        </span>
+                                        <a href="shop-left-sidebar.html" class="btn btn-primary text-capitalize">Shop All Devices</a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center position-relative align-items-center">
+                                    <div class="show-case">
+                                        <div class="hero-slide-image slider-2">
+                                            <img src="{% static 'assets/images/hero/inner-img/hero-2-1.png' %}" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-white"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-buttons">
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero/Intro Slider End -->
+        <!-- Banner Area Start -->
+        <div class="banner-area style-two pt-100px pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="single-banner nth-child-2 mb-lm-30px">
+                            <img src="{% static 'assets/images/banner/6.webp' %}" alt="">
+                            <div class="banner-content nth-child-3">
+                                <h3 class="title">Speaker</h3>
+                                <span class="category">From $69.00</span>
+                                <a href="#" class="shop-link">Shop Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="single-banner nth-child-2">
+                            <img src="{% static 'assets/images/banner/7.webp' %}" alt="">
+                            <div class="banner-content nth-child-2">
+                                <h3 class="title">Smartphone</h3>
+                                <span class="category">From $95.00</span>
+                                <a href="#" class="shop-link">Shop Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Banner Area End -->
+        <!-- Product Area Start -->
+        <div class="product-area pb-100px">
+            <div class="container">
+                <!-- Section Title & Tab Start -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2 class="title">New Products</h2>
+                            <p>There are many variations of passages of Lorem Ipsum available</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Section Title & Tab End -->
+                <div class="row">
+                    <div class="col">
+                        <div class="row mb-n-30px">
+
+
+
+                            {% for prod in product %}
+                            <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                                <!-- Single Prodect -->
+                                <div class="product">
+                                    <span class="badges">
+                                        <span class="new">{{prod.condition}}</span>
+                                    </span>
+                                    <div class="thumb">
+                                        <a href="/products/{{prod.id}}" class="image">
+                                            <img src="{{prod.image}}" style="height:250px;" alt="Product" />
+                                            <img class="hover-image" src="{{prod.image}}" alt="Product" />
+                                        </a>
+                                    </div>
+                                    <br>
+                                    <div class="content">
+                                        <span class="category"><a href="#">{{prod.categories}}</a></span>
+                                        <h5 class="title"><a href="/products/{{prod.id}}">{{prod.name | truncatewords:10 }}
+                                            </a>
+                                        </h5>
+                                        <span class="price">
+                                            <span class="new">৳{{prod.price}}</span>
+                                        </span>
+                                    </div>
+                                    <div class="actions">
+                                        <button title="Add To Cart" class="action add-to-cart" >
+                                            <a href="{% url 'cart_add' prod.id %}" class="text-white"> <i class="pe-7s-shopbag"></i></a></button>
+                                        <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
+                                                class="pe-7s-like"></i></button>
+                                        <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal-{{forloop.counter}}"><i class="pe-7s-look"></i></button>
+
+                                        <!-- Button trigger modal -->
+                                    </div>
+                                </div>
+                            </div>
+                           {% endfor %}
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Area End -->
+        <!-- Banner Area Start -->
+        <div class="banner-area style-three pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="single-banner mb-lm-30px">
+                            <img src="assets/images/banner/8.webp" alt="">
+                            <div class="banner-content nth-child-3">
+                                <h3 class="title">Smart Watch For <br>
+                                        Your Hand</h3>
+                                <span class="category">From $69.00</span>
+                                <a href="shop-left-sidebar.html" class="shop-link">Shop Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="single-banner">
+                            <img src="assets/images/banner/9.webp" alt="">
+                            <div class="banner-content nth-child-2">
+                                <h3 class="title">Smart Watch For <br>
+                                        Your Hand</h3>
+                                <span class="category">From $95.00</span>
+                                <a href="shop-left-sidebar.html" class="shop-link">Shop Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Banner Area End -->
+        <!-- Feature product area start -->
+        <div class="feature-product-area pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2 class="title">Featured Offers</h2>
+                            <p>There are many variations of passages of Lorem Ipsum available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-product-slider swiper-container slider-nav-style-1">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide feature-right-content">
+                            <div class="image-side">
+                                <img src="assets/images/feature-image/2.webp" alt="">
+                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                    class="pe-7s-shopbag"></i></button>
+                            </div>
+                            <div class="content-side">
+                                <div class="deal-timing">
+                                    <span>End In:</span>
+                                    <div data-countdown="2021/09/15"></div>
+                                </div>
+                                <div class="prize-content">
+                                    <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
+                                    <span class="price">
+                                <span class="old">$48.50</span>
+                                    <span class="new">$38.50</span>
+                                    </span>
+                                </div>
+                                <div class="product-feature">
+                                    <ul>
+                                        <li>Predecessor : <span>None.</span></li>
+                                        <li>Support Type : <span>Neutral.</span></li>
+                                        <li>Cushioning : <span>High Energizing.</span></li>
+                                        <li>Total Weight : <span> 300gm</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide feature-right-content">
+                            <div class="image-side">
+                                <img src="assets/images/feature-image/3.webp" alt="">
+                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                    class="pe-7s-shopbag"></i></button>
+                            </div>
+                            <div class="content-side">
+                                <div class="deal-timing">
+                                    <span>End In:</span>
+                                    <div data-countdown="2021/09/15"></div>
+                                </div>
+                                <div class="prize-content">
+                                    <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
+                                    <span class="price">
+                                <span class="old">$48.50</span>
+                                    <span class="new">$38.50</span>
+                                    </span>
+                                </div>
+                                <div class="product-feature">
+                                    <ul>
+                                        <li>Predecessor : <span>None.</span></li>
+                                        <li>Support Type : <span>Neutral.</span></li>
+                                        <li>Cushioning : <span>High Energizing.</span></li>
+                                        <li>Total Weight : <span> 300gm</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide feature-right-content">
+                            <div class="image-side">
+                                <img src="assets/images/feature-image/2.webp" alt="">
+                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                    class="pe-7s-shopbag"></i></button>
+                            </div>
+                            <div class="content-side">
+                                <div class="deal-timing">
+                                    <span>End In:</span>
+                                    <div data-countdown="2021/09/15"></div>
+                                </div>
+                                <div class="prize-content">
+                                    <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
+                                    <span class="price">
+                                <span class="old">$48.50</span>
+                                    <span class="new">$38.50</span>
+                                    </span>
+                                </div>
+                                <div class="product-feature">
+                                    <ul>
+                                        <li>Predecessor : <span>None.</span></li>
+                                        <li>Support Type : <span>Neutral.</span></li>
+                                        <li>Cushioning : <span>High Energizing.</span></li>
+                                        <li>Total Weight : <span> 300gm</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide feature-right-content">
+                            <div class="image-side">
+                                <img src="assets/images/feature-image/3.webp" alt="">
+                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                    class="pe-7s-shopbag"></i></button>
+                            </div>
+                            <div class="content-side">
+                                <div class="deal-timing">
+                                    <span>End In:</span>
+                                    <div data-countdown="2021/09/15"></div>
+                                </div>
+                                <div class="prize-content">
+                                    <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
+                                    <span class="price">
+                                <span class="old">$48.50</span>
+                                    <span class="new">$38.50</span>
+                                    </span>
+                                </div>
+                                <div class="product-feature">
+                                    <ul>
+                                        <li>Predecessor : <span>None.</span></li>
+                                        <li>Support Type : <span>Neutral.</span></li>
+                                        <li>Cushioning : <span>High Energizing.</span></li>
+                                        <li>Total Weight : <span> 300gm</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-buttons">
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Feature product area End -->
+        <!-- Fashion Area Start -->
+        <div class="fashion-area" data-bg-image="assets/images/fashion/fashion-bg.webp">
+            <div class="container h-100">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-12 text-center">
+                        <h2 class="title"> <span>Smart Fashion</span> With Smart Devices </h2>
+                        <a href="shop-left-sidebar.html" class="btn btn-primary text-capitalize m-auto">Shop All Devices</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fashion Area End -->
+        <!-- Feature Area Srart -->
+        <div class="feature-area pt-100px pb-100px">
+            <div class="container">
+                <div class="feature-wrapper">
+                    <div class="single-feture-col mb-md-30px mb-lm-30px">
+                        <!-- single item -->
+                        <div class="single-feature">
+                            <div class="feature-icon">
+                                <img src="assets/images/icons/1.png" alt="">
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="title">Free Shipping</h4>
+                                <span class="sub-title">Capped at $39 per order</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single item -->
+                    <div class="single-feture-col mb-md-30px mb-lm-30px">
+                        <div class="single-feature">
+                            <div class="feature-icon">
+                                <img src="assets/images/icons/2.png" alt="">
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="title">Card Payments</h4>
+                                <span class="sub-title">12 Months Installments</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single item -->
+                    <div class="single-feture-col">
+                        <div class="single-feature">
+                            <div class="feature-icon">
+                                <img src="assets/images/icons/3.png" alt="">
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="title">Easy Returns</h4>
+                                <span class="sub-title">Shop With Confidence</span>
+                            </div>
+                        </div>
+                        <!-- single item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Feature Area End -->
+
+
+
+
+
+        <!-- Blog area start from here -->
+        <div class="main-blog-area pb-100px">
+            <div class="container">
+                <!-- section title start -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title text-center mb-30px0px">
+                            <h2 class="title">Latest Blog</h2>
+                            <p> There are many variations of passages of Lorem Ipsum available</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- section title start -->
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 mb-xs-30px">
+                        <div class="single-blog">
+                            <div class="blog-image">
+                                <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/1.webp" class="img-responsive w-100" alt=""></a>
+                            </div>
+                            <div class="blog-text">
+                                <div class="blog-athor-date line-height-1">
+                                    <span class="blog-date"><i class="fa fa-calendar" aria-hidden="true"></i> 27,Jun 2030</span>
+                                    <span><a class="blog-author" href="blog-grid.html"><i class="fa fa-user" aria-hidden="true"></i> Wild Nick</a></span>
+                                </div>
+                                <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">10 Quick Tips About Smart Product</a></h5>
+                                <p>Lorem ipsum dolor sit amet consl adipisi elit, sed do eiusmod templ incididunt ut labore</p>
+                                <a href="blog-single-left-sidebar.html" class="btn btn-primary blog-btn"> Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End single blog -->
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="single-blog">
+                            <div class="blog-image">
+                                <a href="blog-single-left-sidebar.html"><img src="assets/images/blog-image/2.webp" class="img-responsive w-100" alt=""></a>
+                            </div>
+                            <div class="blog-text">
+                                <div class="blog-athor-date line-height-1">
+                                    <span class="blog-date"><i class="fa fa-calendar" aria-hidden="true"></i> 27,Jun 2030</span>
+                                    <span><a class="blog-author" href="blog-grid.html"><i class="fa fa-user" aria-hidden="true"></i> Oaklee Odom</a></span>
+                                </div>
+                                <h5 class="blog-heading"><a class="blog-heading-link" href="blog-single-left-sidebar.html">5 Real-Life Lessons About Smart Product</a></h5>
+                                <p>Lorem ipsum dolor sit amet consl adipisi elit, sed do eiusmod templ incididunt ut labore</p>
+                                <a href="blog-single-left-sidebar.html" class="btn btn-primary blog-btn"> Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End single blog -->
+                </div>
+            </div>
+        </div>
+        <!-- Blog area end here -->
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if request.session.cart|length < 1 %}
+
+ <!-- Empty Cart area start -->
+        <div class="empty-cart-area pb-100px pt-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cart-heading">
+                            <h2>Your cart item</h2>
+                        </div>
+                        <div class="empty-text-contant text-center">
+                            <i class="pe-7s-shopbag"></i>
+                            <h3>There are no more items in your cart</h3>
+                            <a class="empty-cart-btn" href="{% url 'products' %}">
+                                <i class="fa fa-arrow-left"> </i> Continue shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Empty Cart area end -->
+
+{% else %}
+
+{% load cart_tag %}
+
+<!-- Cart Area Start -->
+        <div class="cart-main-area pt-100px pb-100px">
+            <div class="container">
+                <h3 class="cart-page-title">Your cart items</h3>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <form action="#">
+                            <div class="table-content table-responsive cart-table-content">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Product Name</th>
+                                            <th>Until Price</th>
+                                            <th>Qty</th>
+                                            <th>Subtotal</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for key,value in request.session.cart.items %}
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img class="img-responsive ml-15px" src="{{value.image}}" alt="" /></a>
+                                            </td>
+                                            <td class="product-name"><a href="#">{{value.name | truncatewords:8}}</a></td>
+                                            <td class="product-price-cart"><span class="amount">৳{{value.price}}</span></td>
+                                            <td class="cart_quantity">
+                                                <div class="cart-quantity-button">
+                                                    <a class="cart_quantity_up" href="{% url 'item_increment' value.product_id %}"><b> + </b></a>
+                                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="{{value.quantity}}" />
+                                                    <a class="cart_quantity_down" href="{% url 'item_decrement' value.product_id %}"><b> - </b></a>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal">৳{{ value.price|multiply:value.quantity }}</td>
+                                            <td class="product-remove">
+                                                <a href="#"><i class="fa fa-pencil"></i></a>
+                                                <a href="{% url 'item_clear' key %}"><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="cart-shiping-update-wrapper">
+                                        <div class="cart-shiping-update">
+                                        </div>
+                                        <div class="cart-clear">
+                                            <a href="{% url 'cart_clear' %}">Clear Shopping Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="grand-totall">
+                                    <div class="title-wrap">
+                                        <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                                    </div>
+                                    <h5>Total products <span>৳{{cart_total_amount}}</span></h5>
+                                    <div class="total-shipping">
+                                        <h5>Total shipping</h5>
+                                        <ul>
+                                            <li> Tex <span>৳15</span></li>
+                                            <li> Shipping Charge <span>৳50</span></li>
+
+                                        </ul>
+                                    </div>
+                                    <form method="post" action="{% url 'checkout' %}">
+                                     {% csrf_token %}
+                                      <input value="{{cart_total_amount}}" name="amount" style="font-size: 20px;
+                                                                                                font-family: 'Poppins';
+                                                                                                border: none;
+                                                                                                text-align: end;" readonly>
+                                      <a class=""><button type="submit" class="text-white"> Proceed To Checkout</button></a>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cart Area End -->
+
+{% endif %}
+{% endblock %}

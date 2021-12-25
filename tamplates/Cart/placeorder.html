@@ -1,0 +1,112 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+{% load cart_tag %}
+
+<!-- Cart Area Start -->
+        <div class="cart-main-area pt-100px pb-100px">
+            <div class="container">
+                <h3 class="cart-page-title">Your Order</h3>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <form action="#">
+                            <div class="table-content table-responsive cart-table-content">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Product Name</th>
+                                            <th>Until Price</th>
+                                            <th>Qty</th>
+                                            <th>Subtotal</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for key,value in request.session.cart.items %}
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img class="img-responsive ml-15px" src="{{value.image}}" alt="" /></a>
+                                            </td>
+                                            <td class="product-name"><a href="#">{{value.name | truncatewords:8}}</a></td>
+                                            <td class="product-price-cart"><span class="amount">৳{{value.price}}</span></td>
+                                            <td class="cart_quantity">
+                                                <div class="cart-quantity-button">
+                                                   <a>{{value.quantity}}</a>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal">৳{{ value.price|multiply:value.quantity }}</td>
+
+                                        </tr>
+                                    {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                 <div class="col-lg-12 pt-4">
+                                <div class="grand-totall">
+                                    <div class="title-wrap">
+                                        <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                                    </div>
+                                    <h5>Total products <span>৳{{cart_total_amount}}</span></h5>
+                                    <div class="total-shipping">
+                                        <h5>Total shipping</h5>
+                                        <ul>
+                                            <li> Tex <span>৳15</span></li>
+                                            <li> Shipping Charge <span>৳50</span></li>
+
+                                        </ul>
+                                    </div>
+                                    <h4 class="grand-totall-title">Grand Total <span>৳{{cart_total_amount}}</span></h4>
+                                    <a id="rzp-button1">Place Order</a>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cart Area End -->
+
+
+
+<form action="{% url 'success' %}" method="post">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_AeKabAglzgKKzW",
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "http://127.0.0.1:8000/static/assets/images/logo/logo.png",
+    "order_id": "{{order_id}}",
+    "callback_url": "http://127.0.0.1:8000/success",
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+</form>
+
+
+{% endblock %}

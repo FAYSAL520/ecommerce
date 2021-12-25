@@ -1,0 +1,89 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Shop Page Start  -->
+
+<div class="container">
+    <br>
+<h2>Search Result :</h2>
+    {% if product|length < 1 %}
+    <p class="text-center" style="font-size: 20px;
+    padding: 50px;
+    background-color: cornsilk;
+    font-family: 'Poppins';
+    font-weight: 500;">No Product Found</p>
+    {% endif %}
+</div>
+
+        <div class="shop-category-area pt-100px pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <!-- Shop Bottom Area Start -->
+                        <div class="shop-bottom-area">
+                            <!-- Tab Content Area Start -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="shop-grid">
+                                            <div class="row mb-n-30px">
+
+
+                                                {% for i in product %}
+                                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                                                    <!-- Single Prodect -->
+                                                    <div class="product">
+                                                        <span class="badges">
+                                                        <span class="new">{{i.condition}}</span>
+                                                        </span>
+                                                        <div class="thumb">
+                                                            <a href="single-product.html" class="image">
+                                                                <img src="/{{i.image}}" alt="Product" />
+                                                                <img class="hover-image" src="/{{i.image}}" alt="Product" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="content">
+                                                            <span class="category"><a href="#">{{i.categories}}</a></span>
+                                                            <h5 class="title"><a href="single-product.html">{{i.name  | truncatewords:10}}
+                                                                </a>
+                                                            </h5>
+                                                            <span class="price">
+                                                            <span class="new">৳{{i.price}}</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="actions">
+                                                            <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                                                class="pe-7s-shopbag"></i></button>
+                                                            <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
+                                                                    class="pe-7s-like"></i></button>
+                                                            <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal-{{forloop.counter}}"><i class="pe-7s-look"></i></button>
+                                                            <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i
+                                                                    class="pe-7s-refresh-2"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tab Content Area End -->
+
+                        </div>
+                        <!-- Shop Bottom Area End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Page End  -->
+
+
+
+
+{% endblock %}

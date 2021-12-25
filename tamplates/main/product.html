@@ -1,0 +1,239 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+        <!-- Shop Page Start  -->
+        <div class="shop-category-area pt-100px pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
+                        <!-- Shop Top Area Start -->
+                        <div class="shop-top-bar d-flex">
+                            <p class="compare-product"> <span>12</span> Product Found of <span>30</span></p>
+                            <!-- Left Side End -->
+                            <div class="shop-tab nav">
+                                <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab">
+                                    <i class="fa fa-th" aria-hidden="true"></i>
+                                </button>
+                                <button data-bs-target="#shop-list" data-bs-toggle="tab">
+                                    <i class="fa fa-list" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <!-- Right Side Start -->
+                            <!-- Right Side End -->
+                        </div>
+                        <!-- Shop Top Area End -->
+                        <!-- Shop Bottom Area Start -->
+                        <div class="shop-bottom-area">
+                            <!-- Tab Content Area Start -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="shop-grid">
+                                            <div class="row mb-n-30px">
+
+
+
+                                                {% for prod in product %}
+                                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                                                    <!-- Single Prodect -->
+                                                    <div class="product">
+                                                        <span class="badges">
+                                                        <span class="new">{{prod.condition}}</span>
+                                                        </span>
+                                                        <div class="thumb">
+                                                            <a href="/products/{{prod.id}}" class="image">
+                                                                <img src="/{{prod.image}}" style="height:250px;" alt="Product" />
+                                                                <img class="hover-image" src="/{{prod.image}}" alt="Product" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="content">
+                                                            <span class="category"><a href="#">{{prod.categories}}</a></span>
+                                                            <h5 class="title"><a href="/products/{{prod.id}}">{{prod.name | truncatewords:10}}
+                                                                </a>
+                                                            </h5>
+                                                            <span class="price">
+                                                            <span class="new">৳{{prod.price}}</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="actions">
+                                                            <button title="Add To Cart" class="action add-to-cart" >
+                                                            <a href="{% url 'cart_add' prod.id %}" class="text-white"> <i class="pe-7s-shopbag"></i></a></button>
+                                                            <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
+                                                                    class="pe-7s-like"></i></button>
+                                                            <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal-{{forloop.counter}}"><i class="pe-7s-look"></i></button>
+                                                            <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i
+                                                                    class="pe-7s-refresh-2"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+
+
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade mb-n-30px" id="shop-list">
+
+
+
+                                           {% for prod in product %}
+                                            <div class="shop-list-wrapper mb-30px">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-lg-5 col-xl-4 mb-lm-30px">
+                                                        <div class="product">
+                                                            <div class="thumb">
+                                                                <a href="single-product.html" class="image">
+                                                                    <img src="/{{prod.image}}" style="height:250px;" alt="Product" />
+                                                                    <img class="hover-image" src="/{{prod.image}}" alt="Product" />
+                                                                </a>
+                                                                <span class="badges">
+                                                                <span class="new">{{prod.condition}}</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 col-lg-7 col-xl-8">
+                                                        <div class="content-desc-wrap">
+                                                            <div class="content">
+                                                                <span class="category"><a href="#">{{prod.categories}}</a></span>
+                                                                <h5 class="title"><a href="single-product.html">{{prod.name | truncatewords:10}}</a></h5>
+                                                                <p>{{prod.description | truncatewords:10 | safe}}</p>
+                                                            </div>
+                                                            <div class="box-inner">
+                                                                <span class="price">
+                                                                <span class="new">{{prod.price}}</span>
+                                                                </span>
+                                                                <div class="actions">
+                                                                    <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                                                        class="pe-7s-shopbag"></i></button>
+                                                                    <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
+                                                                            class="pe-7s-like"></i></button>
+                                                                    <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
+                                                                    <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i
+                                                                            class="pe-7s-refresh-2"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tab Content Area End -->
+                            <!--  Pagination Area Start -->
+                            <div class="pro-pagination-style text-center text-lg-end" data-aos="fade-up" data-aos-delay="200">
+                                <div class="pages">
+                                    <ul>
+                                        <li class="li"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
+                                        </li>
+                                        <li class="li"><a class="page-link" href="#">1</a></li>
+                                        <li class="li"><a class="page-link active" href="#">2</a></li>
+                                        <li class="li"><a class="page-link" href="#">3</a></li>
+                                        <li class="li"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--  Pagination Area End -->
+                        </div>
+                        <!-- Shop Bottom Area End -->
+                    </div>
+                    <!-- Sidebar Area Start -->
+                    <div class="col-lg-3 order-lg-first col-md-12 order-md-last">
+                        <div class="shop-sidebar-wrap">
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget">
+                                <h4 class="sidebar-title">Top Categories</h4>
+                                <div class="sidebar-widget-category">
+                                    <ul>
+                                        <li><a href="{% url 'products' %}" class="selected m-0"><b> All Products </b></a></li>
+
+                                        {% for cat in categories %}
+                                        <li><a href="/products?categories={{cat.id}}" class="selected m-0"> {{cat.name}} </a></li>
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget mt-8">
+                                <h4 class="sidebar-title">Price Filter</h4>
+                                <div class="price-filter">
+                                    <div class="price-slider-amount">
+
+                                       {% for filter in filter_price %}
+                                        <li><a href="/products?price_range={{filter.id}}" class="selected m-0"> {{filter.price}} </a></li>
+                                        {% endfor %}
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget">
+                                <h4 class="sidebar-title">Color</h4>
+                                <div class="sidebar-widget-color">
+                                    <ul class="d-flex flex-wrap">
+
+                                        {% for col in color %}
+                                        <li><a href="/products?color={{col.id}}" style="background-color:{{col.code}};"></a></li>
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget">
+                                <h4 class="sidebar-title">Brands</h4>
+                                <div class="sidebar-widget-brand">
+                                    <ul>
+
+                                        {% for brnd in brand %}
+                                        <li><a href="/products?brand={{brnd.id}}" class="selected m-0"> {{brnd.name}} </a></li>
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget">
+                                <h4 class="sidebar-title">Range Filter</h4>
+                                <div class="sidebar-widget-brand">
+                                    <ul>
+
+                                    <li><a href="/products{% for i in product %}?ATOZ={{i.id}} {% endfor %}">Name, A to Z</a></li>
+                                    <li><a href="/products{% for i in product %}?ZTOA={{i.id}} {% endfor %}">Name, Z to A</a></li>
+                                    <li><a href="/products{% for i in product %}?PRICE_LOWTOHIGH={{i.id}} {% endfor %}">Price, low to high</a></li>
+                                    <li><a href="/products{% for i in product %}?PRICE_HIGHTOLOW={{i.id}} {% endfor %}">Price, high to low</a></li>
+                                    <li><a href="/products{% for i in product %}?NEW_PRODUCT={{i.id}} {% endfor %}">Sort By new</a></li>
+                                    <li><a href="/products{% for i in product %}?OLD_PRODUCT={{i.id}} {% endfor %}">Sort By old</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Page End  -->
+
+
+
+{% endblock %}
+
