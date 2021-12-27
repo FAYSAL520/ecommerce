@@ -31,6 +31,9 @@ def HOME(request):
     return render(request, 'main/index.html',context)
 
 
+
+
+
 def PRODUCT(request):
 
     categories = Categories.objects.all()
